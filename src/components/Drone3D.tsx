@@ -3,7 +3,13 @@ import { useFrame } from '@react-three/fiber';
 import { Sphere, Box, Cylinder } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Drone3D = () => {
+interface Drone3DProps {
+  position?: [number, number, number];
+  scale?: number;
+  delay?: number;
+}
+
+const Drone3D = ({ position = [0, 0, 0], scale = 1, delay = 0 }: Drone3DProps) => {
   const groupRef = useRef<THREE.Group>(null);
   const propellerRefs = [
     useRef<THREE.Mesh>(null),
@@ -14,10 +20,10 @@ const Drone3D = () => {
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Gentle floating animation
-      groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
-      groupRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.3) * 0.1;
+      // Gentle floating animation with delay
+      groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 + delay) * 0.2;
+      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3 + delay) * 0.2;
+      groupRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.3 + delay) * 0.1;
     }
 
     // Spin propellers
@@ -29,7 +35,7 @@ const Drone3D = () => {
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[position[0], position[1], position[2]]} scale={scale}>
       {/* Main body */}
       <Box args={[1.5, 0.3, 1.5]} position={[0, 0, 0]}>
         <meshStandardMaterial color="#0EA5E9" metalness={0.8} roughness={0.2} />

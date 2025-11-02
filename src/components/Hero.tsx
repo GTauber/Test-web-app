@@ -1,7 +1,15 @@
-import { motion } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import DroneCanvas from './DroneCanvas';
+import TypingAnimation from './TypingAnimation';
+import MagneticButton from './MagneticButton';
+import { useMouseParallax } from '../hooks/useMouseParallax';
 
 const Hero = () => {
+  const parallax = useMouseParallax(30);
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 300], [0, 100]);
+  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
+
   const scrollToContact = () => {
     const element = document.getElementById('contato');
     if (element) {
@@ -24,7 +32,11 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.8 }}
+            style={{
+              x: parallax.x,
+              y: parallax.y,
+            }}
             className="text-center lg:text-left"
           >
             <motion.h1
@@ -33,7 +45,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl md:text-7xl font-bold text-secondary mb-6"
             >
-              Inspeções com Drones
+              <TypingAnimation text="Inspeções com Drones" speed={80} />
               <motion.span
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -47,7 +59,7 @@ const Hero = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 2 }}
               className="text-xl md:text-2xl text-gray-700 mb-8"
             >
               Tecnologia de ponta para inspeções detalhadas em construções, placas solares,
@@ -57,25 +69,21 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 2.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <MagneticButton
                 onClick={scrollToContact}
                 className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
                 Solicitar Orçamento
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </MagneticButton>
+              <MagneticButton
                 onClick={scrollToServices}
                 className="border-2 border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-all"
               >
                 Nossos Serviços
-              </motion.button>
+              </MagneticButton>
             </motion.div>
           </motion.div>
 
@@ -84,6 +92,10 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            style={{
+              x: -parallax.x * 0.5,
+              y: -parallax.y * 0.5,
+            }}
             className="relative"
           >
             <DroneCanvas />
@@ -105,7 +117,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 2.5 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20"
         >
           {[
@@ -132,7 +144,7 @@ const Hero = () => {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 + feature.delay }}
+              transition={{ duration: 0.6, delay: 2.7 + feature.delay }}
               whileHover={{ y: -10, scale: 1.02 }}
               className="bg-white p-6 rounded-lg shadow-md hover:shadow-2xl transition-all cursor-pointer"
             >
@@ -150,8 +162,9 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Animated background elements */}
+      {/* Animated background elements with parallax */}
       <motion.div
+        style={{ y: y1 }}
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.1, 0.2, 0.1],
@@ -160,6 +173,7 @@ const Hero = () => {
         className="absolute top-20 right-10 w-64 h-64 bg-primary rounded-full blur-3xl"
       />
       <motion.div
+        style={{ y: y2 }}
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.1, 0.15, 0.1],

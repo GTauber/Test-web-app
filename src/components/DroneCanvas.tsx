@@ -8,12 +8,12 @@ const DroneCanvas = () => {
     <div className="w-full h-[400px] md:h-[500px]">
       <Canvas>
         <Suspense fallback={null}>
-          <PerspectiveCamera makeDefault position={[4, 2, 4]} />
+          <PerspectiveCamera makeDefault position={[6, 3, 6]} />
           <OrbitControls
             enableZoom={false}
             enablePan={false}
             autoRotate
-            autoRotateSpeed={2}
+            autoRotateSpeed={1.5}
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 3}
           />
@@ -26,7 +26,13 @@ const DroneCanvas = () => {
 
           <Environment preset="sunset" />
 
-          <Drone3D />
+          {/* Main drone */}
+          <Drone3D position={[0, 0, 0]} scale={0.8} delay={0} />
+
+          {/* Formation drones */}
+          <Drone3D position={[-2.5, 0.3, -1]} scale={0.5} delay={0.5} />
+          <Drone3D position={[2.5, 0.3, -1]} scale={0.5} delay={1} />
+          <Drone3D position={[0, 0.5, -2]} scale={0.4} delay={1.5} />
         </Suspense>
       </Canvas>
     </div>

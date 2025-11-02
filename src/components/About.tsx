@@ -1,3 +1,5 @@
+import AnimatedCounter from './AnimatedCounter';
+
 const About = () => {
   return (
     <section id="sobre" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
@@ -100,15 +102,21 @@ const About = () => {
         {/* Stats */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">500+</div>
+            <div className="text-4xl font-bold text-primary mb-2">
+              <AnimatedCounter end={500} suffix="+" />
+            </div>
             <div className="text-gray-600">Inspeções Realizadas</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">100+</div>
+            <div className="text-4xl font-bold text-primary mb-2">
+              <AnimatedCounter end={100} suffix="+" />
+            </div>
             <div className="text-gray-600">Clientes Satisfeitos</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">5</div>
+            <div className="text-4xl font-bold text-primary mb-2">
+              <AnimatedCounter end={5} />
+            </div>
             <div className="text-gray-600">Anos de Experiência</div>
           </div>
           <div className="text-center">
