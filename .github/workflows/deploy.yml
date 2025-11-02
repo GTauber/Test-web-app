@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - claude/drone-service-website-011CUjKaV4qLZBZUtLpKZqxq
   workflow_dispatch:
 
 permissions:
