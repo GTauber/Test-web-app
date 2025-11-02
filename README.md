@@ -1,73 +1,152 @@
-# React + TypeScript + Vite
+# 🚁 DroneServ - Website de Serviços de Drone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website profissional para serviços de inspeção com drones, totalmente em português brasileiro.
 
-Currently, two official plugins are available:
+## 🌟 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ React 18 com TypeScript
+- ⚡ Vite para desenvolvimento rápido
+- 🎨 Tailwind CSS para estilização moderna
+- 📱 Design totalmente responsivo
+- 🇧🇷 100% em português-BR
+- ✨ Animações suaves e transições
+- 🚀 Otimizado para produção
 
-## React Compiler
+## 📋 Serviços Oferecidos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🏗️ **Inspeção de Obras** - Monitoramento e análise de construções
+- ☀️ **Inspeção de Placas Solares** - Análise termográfica de painéis fotovoltaicos
+- 🏠 **Inspeção de Telhados** - Avaliação completa de coberturas
+- 🌉 **Inspeção de Infraestrutura** - Análise de pontes, viadutos e torres
+- 🏢 **Inspeção de Fachadas** - Detecção de problemas em revestimentos
+- 🌾 **Mapeamento Topográfico** - Levantamento e modelagem 3D
 
-## Expanding the ESLint configuration
+## 🚀 Instalação
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Clone o repositório
+git clone https://github.com/GTauber/Test-web-app.git
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Entre no diretório
+cd Test-web-app
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Instale as dependências
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 💻 Desenvolvimento
+
+```bash
+# Inicie o servidor de desenvolvimento
+npm run dev
+```
+
+O site estará disponível em `http://localhost:5173`
+
+## 🏗️ Build
+
+```bash
+# Crie a build de produção
+npm run build
+
+# Preview da build
+npm run preview
+```
+
+## 🌐 Deploy no GitHub Pages
+
+Este projeto está configurado para deploy automático no GitHub Pages.
+
+### Passos para configurar:
+
+1. **Vá para as configurações do repositório no GitHub**
+   - Settings > Pages
+
+2. **Configure a fonte de deploy**
+   - Source: GitHub Actions
+
+3. **Push para a branch main**
+   ```bash
+   git push origin main
+   ```
+
+4. **O deploy acontecerá automaticamente**
+   - A GitHub Action será executada
+   - O site ficará disponível em: `https://gtauber.github.io/Test-web-app/`
+
+### Deploy Manual
+
+Se preferir fazer deploy manual:
+
+```bash
+# Build do projeto
+npm run build
+
+# O conteúdo estará na pasta dist/
+```
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── components/
+│   ├── Navigation.tsx    # Barra de navegação
+│   ├── Hero.tsx         # Seção principal/hero
+│   ├── Services.tsx     # Seção de serviços
+│   ├── About.tsx        # Seção sobre
+│   ├── Contact.tsx      # Formulário de contato
+│   └── Footer.tsx       # Rodapé
+├── App.tsx              # Componente principal
+├── main.tsx            # Entry point
+└── index.css           # Estilos globais
+```
+
+## 🎨 Personalização
+
+### Cores
+
+As cores principais podem ser personalizadas em `tailwind.config.js`:
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
+theme: {
+  extend: {
+    colors: {
+      primary: '#0EA5E9',    // Cor principal
+      secondary: '#1E293B',  // Cor secundária
+      accent: '#F59E0B',     // Cor de destaque
     },
   },
-])
+}
 ```
+
+### Conteúdo
+
+Todo o conteúdo está nos componentes em `src/components/`. Edite conforme necessário:
+- Textos e descrições
+- Informações de contato
+- Serviços oferecidos
+- Estatísticas e dados
+
+## 🔧 Tecnologias
+
+- [React](https://react.dev/) - Biblioteca JavaScript
+- [TypeScript](https://www.typescriptlang.org/) - Tipagem estática
+- [Vite](https://vite.dev/) - Build tool
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
+- [GitHub Pages](https://pages.github.com/) - Hospedagem
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT.
+
+## 📧 Contato
+
+Para dúvidas ou sugestões, entre em contato através do formulário no site ou pelos canais:
+
+- Email: contato@droneserv.com.br
+- Telefone: (11) 99999-9999
+- WhatsApp: (11) 99999-9999
+
+---
+
+Desenvolvido com ❤️ para serviços profissionais de drone
